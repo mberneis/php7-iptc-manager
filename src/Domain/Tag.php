@@ -6,39 +6,39 @@ namespace iBudasov\Iptc\Domain;
 
 class Tag
 {
-    const TYPE = 2;
+    public const TYPE = 2;
 
-    const OBJECT_NAME = '005';
-    const EDIT_STATUS = '007';
-    const PRIORITY = '010';
-    const CATEGORY = '015';
-    const SUPPLEMENTAL_CATEGORY = '020';
-    const FIXTURE_IDENTIFIER = '022';
-    const KEYWORDS = '025';
-    const RELEASE_DATE = '030';
-    const RELEASE_TIME = '035';
-    const SPECIAL_INSTRUCTIONS = '040';
-    const REFERENCE_SERVICE = '045';
-    const REFERENCE_DATE = '047';
-    const REFERENCE_NUMBER = '050';
-    const CREATED_DATE = '055';
-    const CREATED_TIME = '060';
-    const ORIGINATING_PROGRAM = '065';
-    const PROGRAM_VERSION = '070';
-    const OBJECT_CYCLE = '075';
-    const AUTHOR = '080';
-    const CITY = '090';
-    const PROVINCE_STATE = '095';
-    const COUNTRY_CODE = '100';
-    const COUNTRY = '101';
-    const ORIGINAL_TRANSMISSION_REFERENCE = '103';
-    const HEADLINE = '105';
-    const CREDIT = '110';
-    const SOURCE = '115';
-    const COPYRIGHT_STRING = '116';
-    const DESCRIPTION = '120';
-    const LOCAL_CAPTION = '121';
-    const CAPTION_WRITER = '122';
+    public const OBJECT_NAME = '005';
+    public const EDIT_STATUS = '007';
+    public const PRIORITY = '010';
+    public const CATEGORY = '015';
+    public const SUPPLEMENTAL_CATEGORY = '020';
+    public const FIXTURE_IDENTIFIER = '022';
+    public const KEYWORDS = '025';
+    public const RELEASE_DATE = '030';
+    public const RELEASE_TIME = '035';
+    public const SPECIAL_INSTRUCTIONS = '040';
+    public const REFERENCE_SERVICE = '045';
+    public const REFERENCE_DATE = '047';
+    public const REFERENCE_NUMBER = '050';
+    public const CREATED_DATE = '055';
+    public const CREATED_TIME = '060';
+    public const ORIGINATING_PROGRAM = '065';
+    public const PROGRAM_VERSION = '070';
+    public const OBJECT_CYCLE = '075';
+    public const AUTHOR = '080';
+    public const CITY = '090';
+    public const PROVINCE_STATE = '095';
+    public const COUNTRY_CODE = '100';
+    public const COUNTRY = '101';
+    public const ORIGINAL_TRANSMISSION_REFERENCE = '103';
+    public const HEADLINE = '105';
+    public const CREDIT = '110';
+    public const SOURCE = '115';
+    public const COPYRIGHT_STRING = '116';
+    public const DESCRIPTION = '120';
+    public const LOCAL_CAPTION = '121';
+    public const CAPTION_WRITER = '122';
 
     /**
      * @var string which will be converted to int later
@@ -51,7 +51,6 @@ class Tag
     private $value;
 
     /**
-     * @param string   $codeOfTag
      * @param string[] $valuesOfTag
      */
     public function __construct(string $codeOfTag, array $valuesOfTag)
@@ -60,9 +59,6 @@ class Tag
         $this->value = $valuesOfTag;
     }
 
-    /**
-     * @return string
-     */
     public function getCode(): string
     {
         return $this->code;

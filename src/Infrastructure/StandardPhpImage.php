@@ -9,7 +9,6 @@ use iBudasov\Iptc\Domain\Tag;
 
 class StandardPhpImage implements Image
 {
-    /** {@inheritdoc} */
     public function getIptcTags(string $pathToFile): array
     {
         \getimagesize($pathToFile, $imageInfo);
@@ -29,23 +28,12 @@ class StandardPhpImage implements Image
         return $results;
     }
 
-    /**
-     * @param string $pathToFile
-     * @param string $binaryStringToWrite
-     *
-     * @return string
-     */
     public function writeIptcTags(string $pathToFile, string $binaryStringToWrite): string
     {
-        //@see http://php.net/manual/pt_BR/function.iptcembed.php
+        // @see http://php.net/manual/pt_BR/function.iptcembed.php
         return (string) \iptcembed($binaryStringToWrite, $pathToFile, 0);
     }
 
-    /**
-     * @param array $imageInfo
-     *
-     * @return bool
-     */
     private function thereIsNoIptcTags(array $imageInfo): bool
     {
         return !isset($imageInfo['APP13']) || false === \iptcparse($imageInfo['APP13']);

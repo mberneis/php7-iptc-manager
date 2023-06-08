@@ -10,16 +10,11 @@ namespace iBudasov\Iptc\Domain;
 interface Image
 {
     /**
-     * @param string $pathToFile
-     *
      * @return Tag[]
      */
     public function getIptcTags(string $pathToFile): array;
 
     /**
-     * @param string $pathToFile
-     * @param string $binaryStringToWrite
-     *
      * @return string Binary string of file content
      */
     public function writeIptcTags(string $pathToFile, string $binaryStringToWrite): string;

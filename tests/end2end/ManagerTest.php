@@ -10,8 +10,8 @@ use PHPUnit\Framework\TestCase;
 
 class ManagerTest extends TestCase
 {
-    const PROPER_FILE = __DIR__.'/proper-file.jpg';
-    const UNSUPPORTED_FILE = __DIR__.'unsupported-file.png';
+    public const PROPER_FILE = __DIR__.'/proper-file.jpg';
+    public const UNSUPPORTED_FILE = __DIR__.'unsupported-file.png';
 
     /**
      * @var Manager

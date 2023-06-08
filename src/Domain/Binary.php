@@ -6,15 +6,10 @@ namespace iBudasov\Iptc\Domain;
 
 class Binary
 {
-    /**
-     * @param Tag $tag
-     *
-     * @return string
-     */
     public function createBinaryStringFromTag(Tag $tag): string
     {
-        //beginning of the binary string
-        $beginningOfTheBinaryString = \chr(0x1c)
+        // beginning of the binary string
+        $beginningOfTheBinaryString = \chr(0x1C)
             .\chr(Tag::TYPE)
             .\chr((int) $tag->getCode());
 
@@ -31,13 +26,11 @@ class Binary
 
     /**
      * @param int $lengthOfTheCharacter - size of the character
-     *
-     * @return string
      */
     private function getBitSize(int $lengthOfTheCharacter): string
     {
         return
             chr($lengthOfTheCharacter >> 8)
-            .chr($lengthOfTheCharacter & 0xff);
+            .chr($lengthOfTheCharacter & 0xFF);
     }
 }

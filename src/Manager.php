@@ -40,11 +40,6 @@ class Manager
      */
     private $tags;
 
-    /**
-     * @param FileSystem $fileSystem
-     * @param Image      $image
-     * @param Binary     $binary
-     */
     public function __construct(FileSystem $fileSystem, Image $image, Binary $binary)
     {
         $this->fileSystem = $fileSystem;
@@ -61,9 +56,6 @@ class Manager
         return new self($fileSystem, $image, $binaryHelper);
     }
 
-    /**
-     * @param string $pathToFile
-     */
     public function loadFile(string $pathToFile): void
     {
         $this->checkIfFileTypeIsSupported($pathToFile);
@@ -75,26 +67,17 @@ class Manager
         $this->tags = $this->image->getIptcTags($pathToFile);
     }
 
-    /**
-     * @param Tag $tagToAdd
-     */
     public function addTag(Tag $tagToAdd): void
     {
         foreach ($this->tags as $key => $existingTag) {
             if ($tagToAdd->getCode() == $existingTag->getCode()) {
-                throw new \LogicException(
-                    "Trying to add tag with code '{$tagToAdd->getCode()}' but it already exists in file "
-                     .$this->pathToFile
-                );
+                throw new \LogicException("Trying to add tag with code '{$tagToAdd->getCode()}' but it already exists in file ".$this->pathToFile);
             }
         }
 
         $this->tags[] = $tagToAdd;
     }
 
-    /**
-     * @param string $tagCode
-     */
     public function deleteTag(string $tagCode): void
     {
         foreach ($this->tags as $key => $tag) {
@@ -105,10 +88,7 @@ class Manager
             }
         }
 
-        throw new \InvalidArgumentException(
-            "Can not delete tag with code '$tagCode', because it does not exist in file "
-            .$this->pathToFile
-        );
+        throw new \InvalidArgumentException("Can not delete tag with code '$tagCode', because it does not exist in file ".$this->pathToFile);
     }
 
     /**
@@ -119,11 +99,6 @@ class Manager
         return $this->tags;
     }
 
-    /**
-     * @param string $tagCode
-     *
-     * @return Tag|null
-     */
     public function getTag(string $tagCode): ?Tag
     {
         foreach ($this->tags as $tag) {
@@ -155,22 +130,14 @@ class Manager
         $this->fileSystem->createFileWithBinaryContent($this->pathToFile, $updatedBinaryFileContent);
     }
 
-    /**
-     * @param string $pathToFile
-     */
     private function checkIfFileTypeIsSupported(string $pathToFile): void
     {
         $fileExtension = \pathinfo($pathToFile, PATHINFO_EXTENSION);
         if (!\in_array($fileExtension, self::SUPPORTED_FILE_TYPES)) {
-            throw new \InvalidArgumentException(
-                'Supported file types are: '.\json_encode(self::SUPPORTED_FILE_TYPES)
-            );
+            throw new \InvalidArgumentException('Supported file types are: '.\json_encode(self::SUPPORTED_FILE_TYPES));
         }
     }
 
-    /**
-     * @param string $pathToFile
-     */
     private function checkIfFileExists(string $pathToFile): void
     {
         if (false === $this->fileSystem->isFile($pathToFile)) {
